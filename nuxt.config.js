@@ -1,3 +1,11 @@
+const fs = require('fs')
+const path = require('path')
+const dotenv = require('dotenv')
+const dotenvConfig = dotenv.parse(
+  fs.readFileSync(path.resolve(__dirname, `./envs/${process.env.DOT_ENV}/.env`))
+)
+dotenv.config()
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -34,7 +42,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/axios', '~/plugins/repository'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -55,15 +63,26 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // [
+    //   '@nuxtjs/dotenv',
+    //   { path: path.resolve(__dirname, `./envs/${process.env.DOT_ENV}/`) },
+    // ],
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: dotenvConfig.MICRO_CMS_BASE_URL,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  privateRuntimeConfig: {
+    apiKeyGet: dotenvConfig.X_API_KEY,
+    apiKeyPost: dotenvConfig.X_WRITE_API_KEY,
+    test: dotenvConfig.test,
+  },
 }
