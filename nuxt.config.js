@@ -42,7 +42,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/axios', '~/plugins/repository'],
+  plugins: ['~/plugins/axios', '~/plugins/api'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -83,6 +83,5 @@ export default {
   privateRuntimeConfig: {
     apiKeyGet: dotenvConfig.X_API_KEY,
     apiKeyPost: dotenvConfig.X_WRITE_API_KEY,
-    test: dotenvConfig.test,
   },
 }

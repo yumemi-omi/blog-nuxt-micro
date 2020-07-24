@@ -5,5 +5,5 @@ export default ({ $axios }, inject) => {
     posts: posts($axios),
   }
 
-  inject('repositories', repositories)
+  inject('api', repositories)
 }

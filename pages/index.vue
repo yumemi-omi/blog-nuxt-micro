@@ -29,14 +29,10 @@
 
 <script>
 export default {
-  async asyncData({ $repositories }) {
-    // const { data } = await axios.get(
-    //   'https://microcms.microcms.io/api/v1/blog',
-    //   { headers: { X_API_KEY: $config.apiKey } }
-    // )
-    const res = await $repositories.posts.index()
+  async asyncData({ $api }) {
+    const res = await $api.posts.index()
     // eslint-disable-next-line no-console
-    console.log({ res })
+    console.log({ contents: res.contents })
   },
 }
 </script>
