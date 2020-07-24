@@ -1,10 +1,8 @@
-import createRepository from '~/api/repository.js'
+import posts from '~/repositories/posts'
 
 export default ({ $axios }, inject) => {
-  const repositoryWithAxios = createRepository($axios)
-
   const repositories = {
-    posts: repositoryWithAxios('posts'),
+    posts: posts($axios),
   }
 
   inject('repositories', repositories)

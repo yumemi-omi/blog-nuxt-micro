@@ -1,4 +1,10 @@
-export default ($axios) => (resource) => ({
+import Constants from '~/config/Constants'
+
+const {
+  POSTS: { RESOURCE: resource },
+} = Constants
+
+export default ($axios) => ({
   index() {
     return $axios.$get(`/${resource}`)
   },
