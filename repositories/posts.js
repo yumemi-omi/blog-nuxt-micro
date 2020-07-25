@@ -11,8 +11,8 @@ export default ($axios) => ({
   create(payload) {
     return $axios.$post(`/${resource}`, payload)
   },
-  show(id, { query }) {
-    return $axios.$get(`/${resource}/${id}`, { params: query })
+  show(id) {
+    return $axios.$get(`/${resource}/${id}`)
   },
   update(id, payload) {
     return $axios.$put(`/${resource}/${id}`, payload)

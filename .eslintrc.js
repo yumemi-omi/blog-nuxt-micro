@@ -25,5 +25,6 @@ module.exports = {
       },
     ],
     'nuxt/no-cjs-in-config': 'off',
+    'vue/no-v-html': 'off',
   },
 }
