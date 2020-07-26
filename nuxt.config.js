@@ -1,10 +1,5 @@
-const fs = require('fs')
-const path = require('path')
-const dotenv = require('dotenv')
-const dotenvConfig = dotenv.parse(
-  fs.readFileSync(path.resolve(__dirname, `./envs/${process.env.DOT_ENV}/.env`))
-)
-dotenv.config()
+import axios from 'axios'
+require('dotenv').config()
 
 export default {
   /*
@@ -68,25 +63,35 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // [
-    //   '@nuxtjs/dotenv',
-    //   { path: path.resolve(__dirname, `./envs/${process.env.DOT_ENV}/`) },
-    // ],
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: dotenvConfig.MICRO_CMS_BASE_URL,
+    baseURL: process.env.MICRO_CMS_BASE_URL,
   },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  generate: {
+    routes() {
+      return axios
+        .get(`${process.env.MICRO_CMS_BASE_URL}/posts`, {
+          headers: { 'X-API-KEY': process.env.X_API_KEY },
+        })
+        .then((res) =>
+          res.data.contents.map((content) => ({
+            route: `/posts/${content.id}`,
+            payload: content,
+          }))
+        )
+    },
+  },
   privateRuntimeConfig: {
-    apiKeyGet: dotenvConfig.X_API_KEY,
-    apiKeyPost: dotenvConfig.X_WRITE_API_KEY,
+    apiKeyGet: process.env.X_API_KEY,
+    apiKeyPost: process.env.X_WRITE_API_KEY,
   },
 }

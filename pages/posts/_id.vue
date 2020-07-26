@@ -2,8 +2,6 @@
   <div>
     <h1>Details</h1>
     <div class="post" v-html="body" />
-    <br />
-    <div class="post" v-html="sanitizeBody" />
   </div>
 </template>
 
@@ -13,10 +11,19 @@ import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 
 export default {
-  async asyncData({ $api, params }) {
-    const res = await $api.posts.show(params.id)
+  async asyncData({ $api, params, payload }) {
+    let response
+    if (payload) {
+      response = payload
+    } else {
+      response = await $api.posts.show(params.id)
+    }
+
     const $ = cheerio.load(
-      sanitizeHtml(res.body, { allowedTags: false, allowedAttributes: false })
+      sanitizeHtml(response.body, {
+        allowedTags: false,
+        allowedAttributes: false,
+      })
     )
     $('pre code').each((_, elm) => {
       const result = hljs.highlightAuto($(elm).text())
@@ -25,8 +32,7 @@ export default {
     })
 
     return {
-      ...res,
-      sanitizeBody: sanitizeHtml($.html()),
+      ...response,
       body: $.html(),
     }
   },
