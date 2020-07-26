@@ -34,6 +34,10 @@ export default {
    */
   css: [
     {
+      src: '~/node_modules/modern-css-reset/dist/reset.min.css',
+      lang: 'css',
+    },
+    {
       src: '~/node_modules/highlight.js/styles/atom-one-dark.css',
       lang: 'css',
     },
