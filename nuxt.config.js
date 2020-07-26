@@ -42,6 +42,9 @@ export default {
       lang: 'css',
     },
   ],
+  styleResources: {
+    scss: ['~/assets/scss/vars/_colors.scss'],
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -60,6 +63,8 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    // Doc: https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Nuxt.js modules
