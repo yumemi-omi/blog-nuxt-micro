@@ -3,9 +3,9 @@
     <h1>Index</h1>
     <ul>
       <li v-for="content in contents" :key="content.id">
-        <nuxt-link :to="`posts/${content.id}`" prefetch>
-          <div class="ymca">{{ content.title }}</div></nuxt-link
-        >
+        <nuxt-link :to="`posts/${content.id}`" prefetch>{{
+          content.title
+        }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -23,5 +23,3 @@ export default {
   computed: {},
 }
 </script>
-
-<style src="./index.scss" lang="scss" scoped></style>

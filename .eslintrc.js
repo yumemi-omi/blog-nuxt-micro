@@ -14,7 +14,17 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
   ],
-  plugins: ['prettier'],
-  // add your custom rules here
-  rules: {},
+  plugins: ['vue', 'prettier', 'import'],
+  rules: {
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+        },
+      },
+    ],
+    'nuxt/no-cjs-in-config': 'off',
+    'vue/no-v-html': 'off',
+  },
 }

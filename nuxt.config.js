@@ -1,3 +1,6 @@
+import axios from 'axios'
+require('dotenv').config()
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -29,12 +32,24 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    {
+      src: '~/node_modules/modern-css-reset/dist/reset.min.css',
+      lang: 'css',
+    },
+    {
+      src: '~/node_modules/highlight.js/styles/atom-one-dark.css',
+      lang: 'css',
+    },
+  ],
+  styleResources: {
+    scss: ['~/assets/scss/vars/_colors.scss'],
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/axios', '~/plugins/api'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -48,6 +63,8 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    // Doc: https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Nuxt.js modules
@@ -60,10 +77,30 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.MICRO_CMS_BASE_URL,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  generate: {
+    routes() {
+      return axios
+        .get(`${process.env.MICRO_CMS_BASE_URL}/posts`, {
+          headers: { 'X-API-KEY': process.env.X_API_KEY },
+        })
+        .then((res) =>
+          res.data.contents.map((content) => ({
+            route: `/posts/${content.id}`,
+            payload: content,
+          }))
+        )
+    },
+  },
+  privateRuntimeConfig: {
+    apiKeyGet: process.env.X_API_KEY,
+    apiKeyPost: process.env.X_WRITE_API_KEY,
+  },
 }
