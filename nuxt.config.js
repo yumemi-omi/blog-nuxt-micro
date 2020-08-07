@@ -1,5 +1,6 @@
 import axios from 'axios'
 require('dotenv').config()
+const isDev = process.env.NODE_ENV === 'development'
 
 export default {
   /*
@@ -99,7 +100,7 @@ export default {
         )
     },
   },
-  privateRuntimeConfig: {
+  [isDev ? 'publicRuntimeConfig' : 'privateRuntimeConfig']: {
     apiKeyGet: process.env.X_API_KEY,
     apiKeyPost: process.env.X_WRITE_API_KEY,
   },

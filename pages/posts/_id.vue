@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Details</h1>
+    <h1>記事詳細</h1>
     <div class="post" v-html="body" />
   </div>
 </template>

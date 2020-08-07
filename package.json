@@ -6,8 +6,7 @@
     "dev": "cross-env DOT_ENV=development nuxt",
     "build": "cross-env DOT_ENV=production nuxt build",
     "start": "cross-env DOT_ENV=production nuxt start",
-    "export": "cross-env DOT_ENV=production nuxt export",
-    "serve": "cross-env DOT_ENV=development nuxt serve",
+    "generate": "cross-env DOT_ENV=development nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
@@ -23,37 +22,38 @@
     }
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/axios": "^5.12.1",
     "cheerio": "^1.0.0-rc.3",
     "highlight.js": "^10.1.2",
-    "nuxt": "^2.13.0",
-    "sanitize-html": "^1.27.1"
+    "nuxt": "^2.14.1",
+    "sanitize-html": "^1.27.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.0.1",
+    "babel-jest": "^26.2.2",
     "cross-env": "^7.0.2",
-    "eslint": "^7.2.0",
+    "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
-    "jest": "^26.0.1",
+    "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
     "modern-css-reset": "^1.1.1",
     "node-sass": "^4.14.1",
+    "npm-check-updates": "^7.0.3",
     "prettier": "^2.0.5",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^9.0.3",
     "stylelint": "^13.6.1",
-    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.18.0",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.6"
   }
 }
