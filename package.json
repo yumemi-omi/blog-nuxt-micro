@@ -46,7 +46,7 @@
     "jest": "^26.2.2",
     "lint-staged": "^10.2.11",
     "modern-css-reset": "^1.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "npm-check-updates": "^7.0.3",
     "prettier": "^2.0.5",
     "sass-loader": "^9.0.3",
